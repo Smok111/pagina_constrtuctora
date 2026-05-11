@@ -98,11 +98,13 @@ nav a:hover{
 /* HERO */
 .hero{
     background:linear-gradient(rgba(12,24,43,0.76), rgba(12,24,43,0.85)),
-    url('images/image (2).png') center/cover;
+    url('images/fondo1.jpg') center/cover;
     color:white;
     text-align:center;
     padding:130px 20px 120px;
     position:relative;
+    background-attachment:fixed;
+    transition:background-image 1s ease-in-out;
 }
 
 .hero h1{
@@ -158,8 +160,121 @@ nav a:hover{
 /* SERVICES */
 .services{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns:repeat(2,1fr);
     gap:26px;
+}
+
+/* CAROUSEL */
+.carousel-container{
+    background:var(--card);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(14,35,63,0.08);
+    max-width:550px;
+    margin:0 auto;
+}
+
+.carousel-title{
+    padding:20px;
+    background:linear-gradient(145deg, rgba(14,35,63,0.95), rgba(14,35,63,0.88));
+    color:white;
+}
+
+.carousel-title h3{
+    font-size:1.4rem;
+    font-family:'Sora', sans-serif;
+    margin:0;
+}
+
+.carousel-wrapper{
+    position:relative;
+    overflow:hidden;
+    background:#000;
+}
+
+.carousel{
+    display:flex;
+    position:relative;
+    width:100%;
+}
+
+.carousel-slide{
+    width:100%;
+    height:400px;
+    object-fit:cover;
+    display:none;
+    transition:opacity 0.5s ease;
+}
+
+.carousel-slide.active{
+    display:block;
+    opacity:1;
+}
+
+.carousel-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(20,184,106,0.85);
+    color:white;
+    border:none;
+    padding:15px 20px;
+    font-size:28px;
+    cursor:pointer;
+    z-index:10;
+    border-radius:8px;
+    transition:all 0.3s ease;
+}
+
+.carousel-btn:hover{
+    background:rgba(20,184,106,1);
+    transform:translateY(-50%) scale(1.1);
+}
+
+.carousel-btn-prev{
+    left:15px;
+}
+
+.carousel-btn-next{
+    right:15px;
+}
+
+.carousel-dots{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    padding:18px;
+    background:#f8f9fa;
+}
+
+.dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#ccc;
+    cursor:pointer;
+    transition:background 0.3s ease;
+}
+
+.dot.active{
+    background:#14b86a;
+    transform:scale(1.2);
+}
+
+.carousel-info{
+    padding:22px;
+    background:#ffffff;
+    text-align:center;
+    border-top:1px solid rgba(14,35,63,0.08);
+}
+
+.carousel-info p{
+    color:var(--ink-soft);
+    margin-bottom:15px;
+    font-size:1.35rem;
+    text-align:center;
+    font-weight:500;
 }
 
 .card{
@@ -403,39 +518,99 @@ footer{
 
     <div class="services">
 
-        <div class="card">
-            <img src="images/imagen1.jpeg">
-            <div class="card-content">
+        <div class="carousel-container">
+            <div class="carousel-title">
                 <h3>Excavaciones y Demoliciones</h3>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn carousel-btn-prev" onclick="changeSlide(-1)">❮</button>
+                <div class="carousel" id="carousel1">
+                    <img src="images/excavacion1.jpg" class="carousel-slide active" alt="Excavación 1">
+                    <img src="images/excavacion2.jpg" class="carousel-slide" alt="Excavación 2">
+                    <img src="images/excavacion3.jpg" class="carousel-slide" alt="Excavación 3">
+                </div>
+                <button class="carousel-btn carousel-btn-next" onclick="changeSlide(1)">❯</button>
+            </div>
+            <div class="carousel-dots" id="dots1">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+            <div class="carousel-info">
                 <p>Movimiento de tierras, demolición controlada y maquinaria especializada.</p>
-                <a class="btn" href="https://wa.me/51943812536">WhatsApp</a>
+                <a class="btn" href="https://wa.me/51943812536?text=Hola%20POLYLINE%20SAC,%20me%20interesa%20información%20sobre%20Excavaciones%20y%20Demoliciones">Contactar por WhatsApp</a>
             </div>
         </div>
 
-        <div class="card">
-            <img src="images/imagen2.jpeg">
-            <div class="card-content">
+        <div class="carousel-container">
+            <div class="carousel-title">
                 <h3>Anclajes Postensados</h3>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn carousel-btn-prev" onclick="changeSlide2(-1)">❮</button>
+                <div class="carousel" id="carousel2">
+                    <img src="images/anclaje1.jpg" class="carousel-slide active" alt="Anclaje 1">
+                    <img src="images/anclaje2.jpg" class="carousel-slide" alt="Anclaje 2">
+                    <img src="images/anclaje3.jpg" class="carousel-slide" alt="Anclaje 3">
+                </div>
+                <button class="carousel-btn carousel-btn-next" onclick="changeSlide2(1)">❯</button>
+            </div>
+            <div class="carousel-dots" id="dots2">
+                <span class="dot active" onclick="currentSlide2(1)"></span>
+                <span class="dot" onclick="currentSlide2(2)"></span>
+                <span class="dot" onclick="currentSlide2(3)"></span>
+            </div>
+            <div class="carousel-info">
                 <p>Estabilización estructural y soluciones geotécnicas con equipos especializados.</p>
-                <a class="btn" href="https://wa.me/51943812536">WhatsApp</a>
+                <a class="btn" href="https://wa.me/51943812536?text=Hola%20POLYLINE%20SAC,%20me%20interesa%20información%20sobre%20Anclajes%20Postensados">Contactar por WhatsApp</a>
             </div>
         </div>
 
-        <div class="card">
-            <img src="images/imagen3.jpeg">
-            <div class="card-content">
+        <div class="carousel-container">
+            <div class="carousel-title">
                 <h3>Construcción de Estructuras</h3>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn carousel-btn-prev" onclick="changeSlide3(-1)">❮</button>
+                <div class="carousel" id="carousel3">
+                    <img src="images/construccion1.jpg" class="carousel-slide active" alt="Construcción 1">
+                    <img src="images/construccion2.jpg" class="carousel-slide" alt="Construcción 2">
+                    <img src="images/construccion3.jpg" class="carousel-slide" alt="Construcción 3">
+                </div>
+                <button class="carousel-btn carousel-btn-next" onclick="changeSlide3(1)">❯</button>
+            </div>
+            <div class="carousel-dots" id="dots3">
+                <span class="dot active" onclick="currentSlide3(1)"></span>
+                <span class="dot" onclick="currentSlide3(2)"></span>
+                <span class="dot" onclick="currentSlide3(3)"></span>
+            </div>
+            <div class="carousel-info">
                 <p>Desarrollo de edificaciones, obras civiles y estructuras modernas.</p>
-                <a class="btn" href="https://wa.me/51943812536">WhatsApp</a>
+                <a class="btn" href="https://wa.me/51943812536?text=Hola%20POLYLINE%20SAC,%20me%20interesa%20información%20sobre%20Construcción%20de%20Estructuras">Contactar por WhatsApp</a>
             </div>
         </div>
 
-        <div class="card">
-            <img src="images/imagen4.jpeg">
-            <div class="card-content">
-                <h3>Acabados de viviendas </h3>
+        <div class="carousel-container">
+            <div class="carousel-title">
+                <h3>Acabados de viviendas</h3>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn carousel-btn-prev" onclick="changeSlide4(-1)">❮</button>
+                <div class="carousel" id="carousel4">
+                    <img src="images/acabado1.jpg" class="carousel-slide active" alt="Acabado 1">
+                    <img src="images/acabado2.jpg" class="carousel-slide" alt="Acabado 2">
+                    <img src="images/acabado3.jpg" class="carousel-slide" alt="Acabado 3">
+                </div>
+                <button class="carousel-btn carousel-btn-next" onclick="changeSlide4(1)">❯</button>
+            </div>
+            <div class="carousel-dots" id="dots4">
+                <span class="dot active" onclick="currentSlide4(1)"></span>
+                <span class="dot" onclick="currentSlide4(2)"></span>
+                <span class="dot" onclick="currentSlide4(3)"></span>
+            </div>
+            <div class="carousel-info">
                 <p>Transformamos espacios con acabados modernos y funcionales para viviendas, garantizando calidad y precisión en cada detalle.</p>
-                <a class="btn" href="https://wa.me/51943812536">WhatsApp</a>
+                <a class="btn" href="https://wa.me/51943812536?text=Hola%20POLYLINE%20SAC,%20me%20interesa%20información%20sobre%20Acabados%20de%20viviendas">Contactar por WhatsApp</a>
             </div>
         </div>
 
@@ -447,7 +622,7 @@ footer{
 
     <div class="contact">
         <p><strong>Teléfono:</strong> +51 943 812 536</p>
-        <p><strong>Email:</strong> contacto@polylinesac.com</p>
+        <p><strong>Email:</strong> polylinesac@yahoo.com</p>
         <p><strong>Horario:</strong> Lunes a Sábado</p>
     </div>
 </section>
@@ -462,6 +637,134 @@ footer{
 <footer>
     © 2026 POLYLINE SAC - Todos los derechos reservados
 </footer>
+
+<script>
+let slideIndex = 1;
+let slideIndex2 = 1;
+let slideIndex3 = 1;
+let slideIndex4 = 1;
+
+function changeSlide(n) {
+    showSlide(slideIndex += n);
+}
+
+function currentSlide(n) {
+    showSlide(slideIndex = n);
+}
+
+function showSlide(n) {
+    let carousel1 = document.getElementById('carousel1');
+    let slides = carousel1.querySelectorAll('.carousel-slide');
+    let dots1 = document.getElementById('dots1').querySelectorAll('.dot');
+    
+    if (n > slides.length) {
+        slideIndex = 1;
+    }
+    if (n < 1) {
+        slideIndex = slides.length;
+    }
+    
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots1.forEach(dot => dot.classList.remove('active'));
+    
+    slides[slideIndex - 1].classList.add('active');
+    dots1[slideIndex - 1].classList.add('active');
+}
+
+function changeSlide2(n) {
+    showSlide2(slideIndex2 += n);
+}
+
+function currentSlide2(n) {
+    showSlide2(slideIndex2 = n);
+}
+
+function showSlide2(n) {
+    let carousel2 = document.getElementById('carousel2');
+    let slides2 = carousel2.querySelectorAll('.carousel-slide');
+    let dots2 = document.getElementById('dots2').querySelectorAll('.dot');
+    
+    if (n > slides2.length) {
+        slideIndex2 = 1;
+    }
+    if (n < 1) {
+        slideIndex2 = slides2.length;
+    }
+    
+    slides2.forEach(slide => slide.classList.remove('active'));
+    dots2.forEach(dot => dot.classList.remove('active'));
+    
+    slides2[slideIndex2 - 1].classList.add('active');
+    dots2[slideIndex2 - 1].classList.add('active');
+}
+
+function changeSlide3(n) {
+    showSlide3(slideIndex3 += n);
+}
+
+function currentSlide3(n) {
+    showSlide3(slideIndex3 = n);
+}
+
+function showSlide3(n) {
+    let carousel3 = document.getElementById('carousel3');
+    let slides3 = carousel3.querySelectorAll('.carousel-slide');
+    let dots3 = document.getElementById('dots3').querySelectorAll('.dot');
+    
+    if (n > slides3.length) {
+        slideIndex3 = 1;
+    }
+    if (n < 1) {
+        slideIndex3 = slides3.length;
+    }
+    
+    slides3.forEach(slide => slide.classList.remove('active'));
+    dots3.forEach(dot => dot.classList.remove('active'));
+    
+    slides3[slideIndex3 - 1].classList.add('active');
+    dots3[slideIndex3 - 1].classList.add('active');
+}
+
+function changeSlide4(n) {
+    showSlide4(slideIndex4 += n);
+}
+
+function currentSlide4(n) {
+    showSlide4(slideIndex4 = n);
+}
+
+function showSlide4(n) {
+    let carousel4 = document.getElementById('carousel4');
+    let slides4 = carousel4.querySelectorAll('.carousel-slide');
+    let dots4 = document.getElementById('dots4').querySelectorAll('.dot');
+    
+    if (n > slides4.length) {
+        slideIndex4 = 1;
+    }
+    if (n < 1) {
+        slideIndex4 = slides4.length;
+    }
+    
+    slides4.forEach(slide => slide.classList.remove('active'));
+    dots4.forEach(dot => dot.classList.remove('active'));
+    
+    slides4[slideIndex4 - 1].classList.add('active');
+    dots4[slideIndex4 - 1].classList.add('active');
+}
+
+// Carrusel de fondos automático
+let backgroundIndex = 0;
+const backgrounds = ['fondo1.jpg', 'fondo2.jpg'];
+
+function changeBackground() {
+    const hero = document.querySelector('.hero');
+    hero.style.backgroundImage = `linear-gradient(rgba(12,24,43,0.76), rgba(12,24,43,0.85)), url('images/${backgrounds[backgroundIndex]}')`;
+    backgroundIndex = (backgroundIndex + 1) % backgrounds.length;
+}
+
+// Cambiar fondo cada 5 segundos
+setInterval(changeBackground, 5000);
+</script>
 
 </body>
 </html>
